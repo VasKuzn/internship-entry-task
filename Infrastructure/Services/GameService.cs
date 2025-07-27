@@ -54,6 +54,7 @@ namespace internship_entry_task.Infrastructure.Services
                 currentPlayer = 'X',
                 moveNumber = 1,
                 gameField = gameField,
+                gameState = "InProgress",
                 conditions = conditions
             };
 

@@ -26,13 +26,34 @@ namespace internship_entry_task.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
-        [HttpGet("{id}")]
+        [HttpGet("{gameId}")]
         public async Task<ActionResult<GameModel>> GetGameById(Guid gameId)
         {
             try
             {
-                var games = await _gameService.GetAllGamesAsync();
-                return Ok(games);
+                var game = await _gameService.GetGameAsync(gameId);
+                return Ok(game);
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+        [HttpPost]
+        public async Task<ActionResult<GameModel>> CreateGame(ushort fieldSize, GameConditions conditions)
+        {
+            try
+            {
+                var createdGame = await _gameService.CreateNewGameAsync(fieldSize, conditions);
+                return CreatedAtAction(nameof(GetGameById), new { gameid = createdGame.gameId }, createdGame);
+            }
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);
             }
             catch (Exception ex)
             {

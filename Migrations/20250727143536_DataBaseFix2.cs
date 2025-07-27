@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace internship_entry_task.Migrations
 {
     /// <inheritdoc />
-    public partial class DataBaseFix : Migration
+    public partial class DataBaseFix2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -19,6 +19,7 @@ namespace internship_entry_task.Migrations
                     currentPlayer = table.Column<string>(type: "character varying(1)", maxLength: 1, nullable: false),
                     moveNumber = table.Column<int>(type: "integer", nullable: false),
                     gameField = table.Column<string>(type: "text", nullable: false),
+                    gameState = table.Column<string>(type: "text", nullable: false),
                     conditions = table.Column<string>(type: "text", nullable: true)
                 },
                 constraints: table =>

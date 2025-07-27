@@ -42,6 +42,11 @@ namespace internship_entry_task.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("gameState")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasAnnotation("StateConstraint", "gameState IN ('InProgress', 'X Victory', 'O Victory')");
+
                     b.Property<int>("moveNumber")
                         .HasColumnType("integer");
 

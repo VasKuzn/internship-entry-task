@@ -20,7 +20,8 @@ namespace internship_entry_task.Models
                 _gameField = value;
             }
         }
-
-        public GameConditions? conditions { get; set; } // задаем длину победной комбинации и включение/выключение линий для победы
+        public required string gameState { get; set; }
+        public GameConditions? conditions
+        { get; set; } // задаем длину победной комбинации и включение/выключение линий для победы
     }
 }

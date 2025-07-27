@@ -23,9 +23,7 @@ namespace internship_entry_task.Repositories.Data.Configurations
            )
            .HasAnnotation("CheckConstraint", "currentPlayer IN ('X', 'O')");
 
-            builder.Property(x => x.moveNumber)
-         .IsRequired();
-
+            builder.Property(x => x.moveNumber).IsRequired();
 
             builder.Property(x => x.gameField)
             .IsRequired()
@@ -37,6 +35,8 @@ namespace internship_entry_task.Repositories.Data.Configurations
                     c => c.GetHashCode(),
                     c => c.ToList())
                 );
+
+            builder.Property(x => x.gameState).IsRequired().HasAnnotation("StateConstraint", "gameState IN ('InProgress', 'X Victory', 'O Victory')");
 
             builder.Property(x => x.conditions)
                 .HasConversion(

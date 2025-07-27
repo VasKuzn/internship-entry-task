@@ -12,8 +12,8 @@ using internship_entry_task.Repositories.Data.DataBaseContext;
 namespace internship_entry_task.Migrations
 {
     [DbContext(typeof(DataBaseContext))]
-    [Migration("20250726154239_DataBaseFix")]
-    partial class DataBaseFix
+    [Migration("20250727143536_DataBaseFix2")]
+    partial class DataBaseFix2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,6 +44,11 @@ namespace internship_entry_task.Migrations
                     b.Property<string>("gameField")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<string>("gameState")
+                        .IsRequired()
+                        .HasColumnType("text")
+                        .HasAnnotation("StateConstraint", "gameState IN ('InProgress', 'X Victory', 'O Victory')");
 
                     b.Property<int>("moveNumber")
                         .HasColumnType("integer");
